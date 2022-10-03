@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import SideBar from "./components/SideBar";
+import classsName from "classnames";
+import "./App.scss";
 
-function App() {
+type AppState = {
+  showNav: boolean;
+};
+
+const App = () => {
+  const [state, setState] = useState<AppState>({
+    showNav: true,
+  });
+
+  const handleSideBarNav = () => {
+    setState((prev) => ({
+      ...prev,
+      showNav: !prev.showNav,
+    }));
+  };
+
+  const marginPage = classsName("main", { "!ml-64 ": state.showNav });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SideBar handleSideBarNav={handleSideBarNav} showNav={state.showNav} />
+      <div className={marginPage}>Pageaaaaaaaaaaaaaaaaaaaaaa</div>
     </div>
   );
-}
+};
 
 export default App;

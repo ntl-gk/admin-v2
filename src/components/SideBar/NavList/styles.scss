@@ -1,0 +1,14 @@
+.nav-item {
+  transition: all 1s;
+
+  .nav-arrow {
+    transform: rotate(0deg);
+    transition: all 0.5s;
+  }
+
+  .active-arrow {
+    .nav-arrow {
+      transform: rotate(-90deg);
+    }
+  }
+}
